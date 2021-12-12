@@ -2,16 +2,23 @@
 // that we can make db queries inside
 export default function initBugsController(db) {
   const index = (request, response) => {
-    // // db.Bug.create({ problem: 'request.body.problem' })
-    // //   .then((bugs) => {
     response.render('bugs');
-    // //   })
-    //   .catch((error) => console.log(error));
   };
 
+  const newBug = async (request, response) => {
+    console.log('this is req.body', request.body);
+    const bug = await db.Bug.create({
+      problem: request.body.problem,
+      error_text: request.body.error_text,
+      commit: request.body.commit,
+    });
+
+    console.log('🚀 ~ file: bugs.mjs ~ line 17 ~ newBug ~ bug', bug);
+    response.send({ bug });
+  };
   // return all methods we define in an object
   // refer to the routes file above to see this used
   return {
-    index,
+    index, newBug,
   };
 }
