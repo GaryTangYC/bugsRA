@@ -11,6 +11,7 @@ export default function initBugsController(db) {
       problem: request.body.problem,
       error_text: request.body.error_text,
       commit: request.body.commit,
+      featureId: request.body.feature_id,
     });
 
     console.log('🚀 ~ file: bugs.mjs ~ line 17 ~ newBug ~ bug', bug);
